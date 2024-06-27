@@ -1,0 +1,92 @@
+
+<div class="flex">
+    <nav class="bg-gray-100 shadow-md p-4  w-64 h-screen fixed">
+        <div class='flex'>
+            <div>
+            <img src="./logo.png" height="60" width="50" alt='logo'/>
+            </div>
+            <div class='mt-4'>
+            <span class='text-blue-500 text-lg' >Wealth</span>
+            <span class='text-green-500 text-lg' >Folio</span>
+           
+            </div>
+        </div>
+        <ul class="space-y-6 mt-4">
+            <li class='bg-white  rounded-full pl-4 pt-2 pb-2'>
+                <a class="text-gray-600 hover:underline block" routerLink="/home">
+                  Dashboard
+                </a>
+            </li>
+            <li class='bg-white  rounded-full pl-4 pt-2 pb-2'>
+                <a class="text-gray-600 hover:underline block" routerLink="/assets">
+                   Assets
+                </a>
+            </li>
+            <li class='bg-white  rounded-full pl-4 pt-2 pb-2'>
+                <a class="text-gray-600 hover:underline block" routerLink="/liabilities">
+                   Liabilities
+                </a>
+                </li>
+                <li class='bg-white  rounded-full pl-4 pt-2 pb-2'>
+                <a class="text-gray-600 hover:underline block" routerLink="/transactions">
+                  Transactions
+                </a>
+                </li>
+                <li class='bg-white  rounded-full pl-4 pt-2 pb-2'>
+                <a class="text-gray-600 hover:underline block" routerLink="/budget">
+                   Budget Tracking
+                </a>
+            </li>
+            <li class='bg-white  rounded-full pl-4 pt-2 pb-2'>
+                <a class="text-gray-600 hover:underline block" routerLink="/stocks">
+                   Stocks
+                </a>
+            </li>
+            <li class='bg-white  rounded-full pl-4 pt-2 pb-2'>
+                <a class="text-gray-600 hover:underline block" routerLink="/logout">
+                   Logout
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="ml-64 p-8 w-full">
+        <div class="p-8 bg-white shadow-md rounded-lg">
+            <h1 class="text-2xl font-bold mb-4">Liabilities</h1>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+              <div *ngFor="let liability of liabilities; let i = index" [ngClass]="colorclass[i % colorclass.length] + ' p-4 rounded-lg shadow'">
+                <h2 class="text-lg font-semibold">{{ liability.name }}</h2>
+                <p class="text-xl">₹{{ liability.value }}</p>
+                <button class="mt-2 bg-purple-400 text-white px-4 py-2 rounded-lg" (click)="editLiability(liability)">Edit</button>
+                <button class="mt-2 float-right bg-gray-500 text-white px-4 py-2 rounded-lg" (click)="deleteLiability(liability)">Delete</button>
+              </div>
+            </div>
+            <div class="mt-8">
+              <h2 class="text-xl font-bold mb-4">{{ newLiability.id ? 'Edit Liability' : 'Add New Liability' }}</h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700">Liability Type</label>
+                  <select class="mt-1 block w-full p-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    [(ngModel)]="newLiability.name">
+                    <option value="Mortgage">Mortgage</option>
+                    <option value="Car Loan">Car Loan</option>
+                    <option value="Education Loan">Education Loan</option>
+                    <option value="Credit Card Debt">Credit Card Debt</option>
+                    <option value="Personal Loan">Personal Loan</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700">Value</label>
+                  <input type="text" class="mt-1 block w-full p-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    [(ngModel)]="newLiability.value" />
+                </div>
+              </div>
+              <button class="mt-4 bg-red-500 text-white px-4 py-2 rounded-lg" (click)="addOrUpdateLiability()">
+                {{ newLiability.id ? 'Update Liability' : 'Add New Liability' }}
+              </button>
+            </div>
+          </div>
+          
+
+    </div>
+    </div>
