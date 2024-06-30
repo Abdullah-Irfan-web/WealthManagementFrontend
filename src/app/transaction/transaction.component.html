@@ -42,13 +42,18 @@
                 </a>
             </li>
             <li class='bg-white  rounded-full pl-4 pt-2 pb-2'>
+              <a class="text-gray-600 hover:underline block" routerLink="/payment">
+                 Payment
+              </a>
+          </li>
+            <li class='bg-white  rounded-full pl-4 pt-2 pb-2'>
                 <a class="text-gray-600 hover:underline block" routerLink="/logout">
                    Logout
                 </a>
             </li>
         </ul>
     </nav>
-    <div class="ml-64 p-8 w-full">
+    <div class="ml-64 bg-gray-100 p-8 w-full">
         <div class="m-12 xl:m-16 p-8 bg-white shadow-md rounded-lg">
             <h1 class="text-2xl font-bold mb-4">Add Transaction</h1>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
@@ -69,7 +74,7 @@
               </div>
               <div>
                 <label class="block text-sm font-medium text-gray-700">Description</label>
-                <input type="text" name="description" class="mt-1 block w-full p-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                <input required type="text" name="description" class="mt-1 block w-full p-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                        [(ngModel)]="newTransaction.description" (input)="handleInputChange($event)" />
               </div>
               <div>
@@ -82,12 +87,12 @@
               </div>
               <div>
                 <label class="block text-sm font-medium text-gray-700">Amount</label>
-                <input type="number" name="amount" class="mt-1 block w-full p-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                <input required type="number" name="amount" class="mt-1 block w-full p-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                        [(ngModel)]="newTransaction.amount" (input)="handleInputChange($event)" />
               </div>
               <div>
                 <label class="block text-sm font-medium text-gray-700">Payment Method</label>
-                <input type="text" name="paymentMethod" class="mt-1 block w-full p-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                <input required type="text" name="paymentMethod" class="mt-1 block w-full p-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                        [(ngModel)]="newTransaction.paymentMethod" (input)="handleInputChange($event)" />
               </div>
             </div>
@@ -103,7 +108,7 @@
             <ul>
               <li *ngFor="let transaction of filteredTransactions" class="mb-4">
                 <div class="flex justify-between items-center mb-2">
-                  <div class="text-gray-600">{{ transaction.date }}</div>
+                  <div class="text-gray-600">{{ transaction.date }} <span>{{transaction.time}}</span></div>
                   <div class="text-gray-600">{{ transaction.day }}</div>
                 </div>
                 <div class="flex justify-between items-center bg-gray-100 p-4 rounded-lg shadow">

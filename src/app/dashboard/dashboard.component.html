@@ -43,13 +43,18 @@
                 </a>
             </li>
             <li class='bg-white  rounded-full pl-4 pt-2 pb-2'>
+              <a class="text-gray-600 hover:underline block" routerLink="/payment">
+                 Payment
+              </a>
+          </li>
+            <li class='bg-white  rounded-full pl-4 pt-2 pb-2'>
                 <a class="text-gray-600 hover:underline block" routerLink="/logout">
                    Logout
                 </a>
             </li>
         </ul>
     </nav>
-    <div class="ml-64 p-8 w-full">
+    <div class="ml-64 bg-gray-100 p-8 w-full">
 <div class="p-8 bg-white shadow-md rounded-lg">
     <div class="flex flex-row w-[100%] justify-between">
       <div>
@@ -71,9 +76,13 @@
         <h2 class="text-lg font-semibold">Total Liabilities</h2>
         <p class="text-3xl text-gray-700 mt-2">₹{{ totalLiability  }}</p>
       </div>
+      <div class="bg-blue-100 p-4 rounded-lg shadow">
+        <h2 class="text-lg font-semibold">Amount in Bank</h2>
+        <p class="text-3xl text-gray-700 mt-2">₹{{ totalWealth  }}</p>
+      </div>
       <div class="bg-green-100 p-4 rounded-lg shadow">
         <h2 class="text-lg font-semibold">Net Worth</h2>
-        <p class="text-3xl text-gray-700 mt-2">₹{{ (totalAsset - totalLiability)  }}</p>
+        <p class="text-3xl text-gray-700 mt-2">₹{{ (+totalWealth+totalAsset - totalLiability)  }}</p>
       </div>
     </div>
     <div>

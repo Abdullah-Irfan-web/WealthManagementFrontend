@@ -26,7 +26,11 @@ export class StocksService {
     });
   }
 
-  sellStock(id: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/sellstock/${id}`);
+  sellStock(stock:any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/sellstock`,stock,{
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    });
   }
 }

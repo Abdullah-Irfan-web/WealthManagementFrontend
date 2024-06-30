@@ -62,7 +62,12 @@ export class StocksComponent implements OnInit {
   }
 
   sellStock(id: number,index:number): void {
-    this.stockService.sellStock(id).subscribe(res => {
+      const data={
+        id:id,
+        pl:this.PL[index],
+        email:this.useremail
+      }
+    this.stockService.sellStock(data).subscribe(res => {
       // var filteredArray = this.PL.filter(e => e !== res.data.regularMarketPrice - buyprice)
       // this.PL=[...filteredArray]
       delete this.PL[index];
@@ -82,12 +87,17 @@ export class StocksComponent implements OnInit {
         email: this.useremail
       };
       this.stockService.addStockToPortfolio(entry).subscribe(res => {
-        if (res.message === 'ok') {
+        if (res.message !== 'ok') {
+              alert(res.message);
+            }
+
+        else{
           this.fetchPortfolio();
+          this.stockData = null;
+          this.symbol = '';
+          this.qty = 0;
         }
-        this.stockData = null;
-        this.symbol = '';
-        this.qty = 0;
+       
       });
     }
   }

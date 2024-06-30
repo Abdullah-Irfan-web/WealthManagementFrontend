@@ -13,11 +13,12 @@ export class DashboardComponent implements OnInit {
   user: any;
   totalAsset = 0;
   totalLiability = 0;
+  totalWealth=0;
   todayDate = new Date().toISOString().split('T')[0];
   todayDay = new Date().toLocaleDateString('en-US', { weekday: 'short' });
 
  
-  public pieChartLabels: string[]  = ['Total Assets', 'Total Liabilities', 'Net Worth']
+  public pieChartLabels: string[]  = ['Total Assets', 'Total Liabilities','Amount in Bank', 'Net Worth']
 
 
   public pieChartData: ChartData<'pie'> = {
@@ -26,8 +27,8 @@ export class DashboardComponent implements OnInit {
       {
         label: "Overview",
         data: [],
-        backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)', 'rgb(75, 192, 192)'],
-        hoverBackgroundColor: ['rgba(54, 162, 235, 0.8)', 'rgba(255, 99, 132, 0.8)', 'rgba(75, 192, 192, 0.8)'],
+        backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)', 'rgb(75, 192, 192)','rgb(40, 100, 212)'],
+        hoverBackgroundColor: ['rgba(54, 162, 235, 0.8)', 'rgba(255, 99, 132, 0.8)', 'rgba(75, 192, 192, 0.8)','rgba(40, 100, 212, 0.8)'],
    }
     ]
   };
@@ -48,9 +49,10 @@ export class DashboardComponent implements OnInit {
     try {
       const assets = await this.dashboardService.getAssets(this.user.email).toPromise();
       const liabilities = await this.dashboardService.getLiabilities(this.user.email).toPromise();
-      
+     const Wealth=await this.dashboardService.getTotalAmount(this.user.email).toPromise()
       this.totalAsset = assets.reduce((sum: number, asset: any) => sum + asset.value, 0);
       this.totalLiability = liabilities.reduce((sum: number, liability: any) => sum + liability.value, 0);
+      this.totalWealth=Wealth.totalWealth;
       this.updateChartData();
        } catch (error) {
       console.error('Error fetching financial data:', error);
@@ -65,7 +67,8 @@ export class DashboardComponent implements OnInit {
           data: [
             this.totalAsset ,
             this.totalLiability ,
-            (this.totalAsset - this.totalLiability) 
+            this.totalWealth,
+            (this.totalWealth+this.totalAsset - this.totalLiability) 
           ]
         }
       ]

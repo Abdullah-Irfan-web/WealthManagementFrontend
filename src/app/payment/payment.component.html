@@ -1,0 +1,122 @@
+<div class="flex">
+  <nav class="bg-gray-100 shadow-md p-4 w-64 h-screen fixed">
+    <div class='flex'>
+      <div>
+        <img src="./logo.png" height="60" width="50" alt='logo' />
+      </div>
+      <div class='mt-4'>
+        <span class='text-blue-500 text-lg'>Wealth</span>
+        <span class='text-green-500 text-lg'>Folio</span>
+      </div>
+    </div>
+    <ul class="space-y-6 mt-4">
+      <li class='bg-white rounded-full pl-4 pt-2 pb-2'>
+        <a class="text-gray-600 hover:underline block" routerLink="/home">
+          Dashboard
+        </a>
+      </li>
+      <li class='bg-white rounded-full pl-4 pt-2 pb-2'>
+        <a class="text-gray-600 hover:underline block" routerLink="/assets">
+          Assets
+        </a>
+      </li>
+      <li class='bg-white rounded-full pl-4 pt-2 pb-2'>
+        <a class="text-gray-600 hover:underline block" routerLink="/liabilities">
+          Liabilities
+        </a>
+      </li>
+      <li class='bg-white rounded-full pl-4 pt-2 pb-2'>
+        <a class="text-gray-600 hover:underline block" routerLink="/transactions">
+          Transactions
+        </a>
+      </li>
+      <li class='bg-white rounded-full pl-4 pt-2 pb-2'>
+        <a class="text-gray-600 hover:underline block" routerLink="/budget">
+          Budget Tracking
+        </a>
+      </li>
+      <li class='bg-white rounded-full pl-4 pt-2 pb-2'>
+        <a class="text-gray-600 hover:underline block" routerLink="/stocks">
+          Stocks
+        </a>
+      </li>
+      <li class='bg-white rounded-full pl-4 pt-2 pb-2'>
+        <a class="text-gray-600 hover:underline block" routerLink="/payment">
+          Payment
+        </a>
+      </li>
+      <li class='bg-white rounded-full pl-4 pt-2 pb-2'>
+        <a class="text-gray-600 hover:underline block" routerLink="/logout">
+          Logout
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="ml-64 p-8 bg-gray-100 w-full flex flex-col items-center space-y-8">
+    <div class="max-w-md w-full bg-white shadow-lg rounded-lg p-8">
+      <h2 class="text-2xl font-semibold text-gray-700 text-center">Make a Payment</h2>
+      <form (ngSubmit)="makePayment()" class="mt-8">
+        <div class="mb-4">
+          <label class="block text-gray-600 mb-2" for="name">Name</label>
+          <input 
+            id="name" 
+            name="name" 
+            type="text" 
+            [(ngModel)]="paymentData.name" 
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+            required>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-600 mb-2" for="email">Email Address</label>
+          <input 
+            id="emailto" 
+            name="emailto" 
+            type="email" 
+            [(ngModel)]="paymentData.emailto" 
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+            required>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-600 mb-2" for="amount">Amount</label>
+          <input 
+            id="amount" 
+            name="amount" 
+            type="number" 
+            [(ngModel)]="paymentData.amount" 
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+            required>
+        </div>
+        <button 
+          type="submit" 
+          class="w-full bg-blue-500 text-white py-2 rounded-md font-semibold hover:bg-blue-700 transition duration-300">
+          Pay
+        </button>
+      </form>
+    </div>
+
+    <div class="max-w-4xl w-full h-full mt-8 bg-white shadow-lg rounded-lg p-4">
+      <h2 class="text-2xl font-semibold text-gray-700 text-center">Payment History</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full h-full mt-4">
+          <thead>
+            <tr class="bg-gray-200 text-gray-600 text-left">
+              <th class="py-3 px-4">From Email</th>
+              <th class="py-3 px-4">To Email</th>
+              <th class="py-3 px-4">Date & Time</th>
+              <th class="py-3 px-4">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let payment of payments">
+              <td class="py-3 px-4">{{ payment.emailfrom }}</td>
+              <td class="py-3 px-4">{{ payment.emailto }}</td>
+              <td class="py-3 px-4">{{ payment.date}}, {{payment.day}}, {{payment.time}}</td>
+              <td [ngClass]="payment.emailfrom===useremail ? 'text-red-500' : 'text-green-500'" class="py-3 px-4">₹{{ payment.amount }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

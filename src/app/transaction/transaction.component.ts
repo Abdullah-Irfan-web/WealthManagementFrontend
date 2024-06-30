@@ -12,6 +12,7 @@ export class TransactionComponent implements OnInit {
   newTransaction: any = {
     date: '',
     day: '',
+    time: '',
     type: 'Food',
     description: '',
     amount: '',
@@ -50,15 +51,21 @@ export class TransactionComponent implements OnInit {
     const month = date.getMonth() + 1;
     const currdate = `${date.getFullYear()}-${month > 9 ? month : '0' + month}-${date.getDate()}`;
     const day = date.toLocaleDateString('en-US', { weekday: 'short' });
+    const time = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+
     const newEntry = {
       ...this.newTransaction,
       date: currdate,
       day,
+      time,
       amount: parseFloat(this.newTransaction.amount)
     };
 
     this.transactionService.addTransaction(newEntry).subscribe(res => {
-      if (res.message === 'ok') {
+      if (res.message !== 'ok') {
+       alert(res.message);
+      }
+   else {
         this.fetchTransactions();
       }
     });
@@ -66,6 +73,7 @@ export class TransactionComponent implements OnInit {
     this.newTransaction = {
       date: '',
       day: '',
+      time:'',
       type: 'Food',
       description: '',
       amount: '',

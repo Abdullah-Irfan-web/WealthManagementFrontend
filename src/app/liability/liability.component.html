@@ -43,6 +43,11 @@
                 </a>
             </li>
             <li class='bg-white  rounded-full pl-4 pt-2 pb-2'>
+              <a class="text-gray-600 hover:underline block" routerLink="/payment">
+                 Payment
+              </a>
+          </li>
+            <li class='bg-white  rounded-full pl-4 pt-2 pb-2'>
                 <a class="text-gray-600 hover:underline block" routerLink="/logout">
                    Logout
                 </a>
@@ -50,14 +55,14 @@
         </ul>
     </nav>
 
-    <div class="ml-64 p-8 w-full">
+    <div class="ml-64 bg-gray-100 p-8 w-full">
         <div class="p-8 bg-white shadow-md rounded-lg">
-            <h1 class="text-2xl font-bold mb-4">Liabilities</h1>
+            <h1 class="text-2xl  mb-4">Liabilities You Have</h1>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-              <div *ngFor="let liability of liabilities; let i = index" [ngClass]="colorclass[i % colorclass.length] + ' p-4 rounded-lg shadow'">
+              <div *ngFor="let liability of liabilities; let i = index" [ngClass]="'bg-red-100' + ' p-4 rounded-lg shadow'">
                 <h2 class="text-lg font-semibold">{{ liability.name }}</h2>
                 <p class="text-xl">₹{{ liability.value }}</p>
-                <button class="mt-2 bg-purple-400 text-white px-4 py-2 rounded-lg" (click)="editLiability(liability)">Edit</button>
+                <button class="mt-2 bg-blue-500 text-white px-4 py-2 rounded-lg" (click)="editLiability(liability)">Edit</button>
                 <button class="mt-2 float-right bg-gray-500 text-white px-4 py-2 rounded-lg" (click)="deleteLiability(liability)">Delete</button>
               </div>
             </div>
@@ -77,7 +82,7 @@
                 </div>
                 <div>
                   <label class="block text-sm font-medium text-gray-700">Value</label>
-                  <input type="text" class="mt-1 block w-full p-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  <input required type="text" class="mt-1 block w-full p-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                     [(ngModel)]="newLiability.value" />
                 </div>
               </div>

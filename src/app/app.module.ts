@@ -21,6 +21,7 @@ import { StocksComponent } from './stocks/stocks.component';
 import { TransactionService } from './transaction.service';
 import { TransactionComponent } from './transaction/transaction.component';
 import { LogoutComponent } from './logout/logout.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { LogoutComponent } from './logout/logout.component';
     TransactionComponent,
     BudgetComponent,
     StocksComponent,
-    LogoutComponent
+    LogoutComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,

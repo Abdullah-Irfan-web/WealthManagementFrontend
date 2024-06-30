@@ -30,13 +30,22 @@ export class AssetComponent implements OnInit {
   addOrUpdateAsset(): void {
     if (this.newAsset.id) {
       this.assetService.updateAsset(this.newAsset).subscribe(res => {
-        if (res.message === 'ok') {
+        if (res.message !== 'ok') {
+          this.fetchAssets();
+          alert(res.message);
+         
+        }
+        else{
           this.fetchAssets();
         }
       });
     } else {
       this.assetService.addAsset(this.newAsset).subscribe(res => {
-        if (res.message === 'ok') {
+        if(res.message!=='ok'){
+          alert(res.message);
+        }
+       
+        else {
           this.fetchAssets();
         }
       });

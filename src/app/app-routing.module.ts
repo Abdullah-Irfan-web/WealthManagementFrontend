@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LiabilityComponent } from './liability/liability.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { PaymentComponent } from './payment/payment.component';
 import { SignupComponent } from './signup/signup.component';
 import { StocksComponent } from './stocks/stocks.component';
 import { TransactionComponent } from './transaction/transaction.component';
@@ -21,7 +22,11 @@ const routes: Routes = [
   { path: 'transactions', component: TransactionComponent,canActivate: [AuthGuard] },
   { path: 'budget', component: BudgetComponent,canActivate: [AuthGuard] },
   { path: 'stocks', component: StocksComponent,canActivate: [AuthGuard] },
-  {path:'logout',component:LogoutComponent}
+  { path: 'payment', component: PaymentComponent,canActivate: [AuthGuard] },
+
+  {path:'logout',component:LogoutComponent},
+
+  
 
 ];
 

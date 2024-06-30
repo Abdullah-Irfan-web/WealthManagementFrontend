@@ -17,4 +17,7 @@ export class DashboardService {
   getLiabilities(email: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/getliability/${email}`);
   }
+  getTotalAmount(email:String):Observable<any>{
+    return this.http.get(`${this.apiUrl}/gettotalamount/${email}`);
+  }
 }

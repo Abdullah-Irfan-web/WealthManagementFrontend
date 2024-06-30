@@ -30,13 +30,22 @@ export class LiabilityComponent implements OnInit {
   addOrUpdateLiability(): void {
     if (this.newLiability.id) {
       this.liabilityService.updateLiability(this.newLiability).subscribe(res => {
-        if (res.message === 'ok') {
+        if (res.message !== 'ok') {
+          this.fetchLiabilities();
+          alert(res.message);
+         
+        }
+        else{
           this.fetchLiabilities();
         }
       });
     } else {
       this.liabilityService.addLiability(this.newLiability).subscribe(res => {
-        if (res.message === 'ok') {
+        if(res.message!=='ok'){
+          alert(res.message);
+        }
+       
+        else {
           this.fetchLiabilities();
         }
       });

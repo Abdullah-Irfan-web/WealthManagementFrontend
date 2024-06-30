@@ -11,7 +11,14 @@ export class SignupComponent {
   data = {
     username: '',
     email: '',
-    password: ''
+    password: '',
+    gender:'',
+    bankName:'',
+    bankAccountNumber:'',
+    totalWealth:''
+
+
+
   };
   constructor(private authService: AuthService, private router: Router) {}
 
