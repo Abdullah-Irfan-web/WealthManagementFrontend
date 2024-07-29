@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { isThisMonth, isThisWeek, isToday } from 'date-fns';
+import { ngxCsv } from 'ngx-csv/ngx-csv';
 import { TransactionService } from '../transaction.service';
-
+ 
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
@@ -103,4 +104,24 @@ export class TransactionComponent implements OnInit {
   get filteredTransactions(): any[] {
     return this.filterTransactions();
   }
+  exportToCSV(): void {
+    const options = {
+      headers: ["Date", "Day", "Time", "Type", "Description", "Amount", "Balance", "Payment Method", "Email"]
+    };
+
+    const data = this.transactions.map(transaction => ({
+      Date: transaction.date,
+      Day: transaction.day,
+      Time: transaction.time,
+      Type: transaction.type,
+      Description: transaction.description,
+      Amount: transaction.amount,
+      Balance: transaction.balance,
+      PaymentMethod: transaction.paymentMethod,
+      Email: transaction.email
+    }));
+
+    new ngxCsv(data, 'My Report',options);
+  }
 }
+

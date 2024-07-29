@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ngxCsv } from 'ngx-csv/ngx-csv';
 import { PaymentService } from '../payment.service';
 
 @Component({
@@ -62,5 +63,21 @@ export class PaymentComponent implements OnInit {
       emailto: '',
       amount: ''
     };
+  }
+
+  exportToCSV(): void {
+    const options = {
+      headers: ['Date', 'Amount', 'From', 'To','Type']
+    };
+       const data = this.payments.map(payment => [
+        payment.date,
+        payment.amount,
+        payment.emailfrom,
+        payment.emailto,
+     
+      payment.emailfrom === this.useremail ? 'Debit' : 'Credit'
+    ]);
+
+    new ngxCsv(data, 'MyPayReport',options);
   }
 }

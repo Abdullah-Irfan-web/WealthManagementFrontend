@@ -104,7 +104,10 @@
               <button (click)="setFilter('thisWeek')" class="px-4 py-2 ml-2 rounded-full" [ngClass]="filter === 'thisWeek' ? 'bg-blue-500 text-white' : 'bg-gray-200'">This Week</button>
               <button (click)="setFilter('thisMonth')" class="px-4 py-2 ml-2 rounded-full" [ngClass]="filter === 'thisMonth' ? 'bg-blue-500 text-white' : 'bg-gray-200'">This Month</button>
               <button (click)="setFilter('all')" class="px-4 py-2 ml-2 rounded-full" [ngClass]="filter === 'all' ? 'bg-blue-500 text-white' : 'bg-gray-200'">All</button>
+             
+            
             </div>
+            
             <ul>
               <li *ngFor="let transaction of filteredTransactions" class="mb-4">
                 <div class="flex justify-between items-center mb-2">
@@ -123,6 +126,8 @@
                 </div>
               </li>
             </ul>
+            <button (click)="exportToCSV()" class="bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Export to CSV</button>
+     
           </div>
           
 
